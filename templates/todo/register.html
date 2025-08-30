@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Form</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #A2C2E8, #E0B0FF); /* Light Blue to Light Purple */
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #B2EBF2; /* Soft Blue border */
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.2); /* Soft blue shadow */
+    background-color: #E0F7FA; /* Light Blue background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 80%; /* Increased width for better usability */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 10px auto; /* Centered margin */
+    display: block; /* Block display for centering */
+    color: #343A40; /* Dark Gray text */
+    background-color: #F8F9FA; /* Light Gray background for input fields */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #007BFF; /* Soft Blue on focus */
+    background-color: #E9F5FF; /* Light Blue background on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover {
+    background-color: #F1F1F1; /* Slightly darker gray on hover */
+}
+
+input[type="submit"] {
+    background-color: #28A745; /* Soft Green */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 15px auto; /* Centered margin */
+    display: block; /* Block display for centering */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838; /* Darker Green on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+h4 {
+    text-align: center; /* Centered heading */
+    color: #343A40; /* Dark Gray for heading */
+    font-size: 24px; /* Increased font size for better visibility */
+    font-family: "Roboto", serif;
+}
+
+#alert {
+    color: red;
+    padding-left: 10px; /* Adjusted padding */
+    text-align: center; /* Centered alert */
+}
+
+#info {
+    padding-left: 10px; /* Adjusted padding */
+    text-align: center; /* Centered info */
+}
+</style>
+<body>
+	<div class="container">
+
+		<form action="register" method="post">
+			{% csrf_token %}
+			<h4>REGISTER</h4>
+			<input type="text" name="first_name" placeholder="Firstname">
+			<input type="text" name="last_name" placeholder="Lastname">
+			<input type="text" name="username" placeholder="Username">
+			<input type="email"  name="email" placeholder="email">
+			<input type="password" name="password1" placeholder="password">
+			<input type="password" name="password2" placeholder="confirm password">
+			{% for message in messages %}
+				<p id="alert">{{message}}</p>
+			{% endfor %}
+			<p id="info">Already have accounts?<a href="{% url 'login' %}">login</a></p>
+			<input type="submit"  value="Signup">
+
+		</form>
+		<div>
+
+		</div>
+	</div>
+</body>
+</html>
